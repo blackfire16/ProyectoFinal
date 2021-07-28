@@ -1,0 +1,22 @@
+stages:
+       - deploy
+deploy-production:
+       image: ilyasemenov/gitlab-ci-git-push
+       stage: deploy
+       environment:
+              name: production
+              url: https://topicos.apps.danieldiaz.me
+       only:
+              - master
+       script:
+              - git-push ssh://dokku@apps.danieldiaz.me:22/topicos
+# deploy-staging:
+#        image: ilyasemenov/gitlab-ci-git-push
+#        stage: deploy
+#        environment:
+#               name: staging
+#               url: https://portfolio-staging.apps.danieldiaz.me
+#        only:
+#        - develop
+#        script:
+#               - git-push ssh://dokku@apps.danieldiaz.me:22/portfolio-staging
